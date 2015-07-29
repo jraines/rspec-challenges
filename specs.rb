@@ -1,4 +1,5 @@
 require './methods.rb'
+require './methods-day-2.rb'
 
 RSpec.configure do |config|
   config.color = true
@@ -35,3 +36,69 @@ describe '#interpose' do
   end
 
 end
+
+
+describe '#repeat' do
+  it "repeats a string n times, seperated by a space" do
+    expect(repeat("Jeremy", 3)).to eq "Jeremy Jeremy Jeremy"
+  end
+end
+
+describe '#interleave' do
+  it "interleaves two arrays into a single flat array" do
+    a1 = [1, 2, 3]
+    a2 = [:a, :b, :c]
+
+    expect(interleave(a1, a2)).to eq([1, :a,
+                                      2, :b,
+                                      3, :c])
+  end
+end
+
+
+describe "#hide_in_shuffle" do
+  it "puts a given letter in an shuffled array" do
+    expect(hide_in_shuffle("foo")).to include("foo")
+  end
+end
+
+
+describe "#shuffler" do
+  it "calls shuffle n times on an array" do
+    array = [1, 2, 3]
+    expect(array).to receive(:shuffle).exactly(3).times
+    shuffler(array, 3)
+  end
+end
+
+
+
+
+describe Doubler do
+  it '#double doubles the number given' do
+    doubler = Doubler.new
+    expect(doubler.double(2)).to eq(4)
+  end
+end
+
+describe CashDoubler do
+  it '#double_cash doubles a monetary value' do
+    doubler = Doubler.new
+    cd = CashDoubler.new(doubler)
+    expect(cd.double_cash('$2')).to eq('$4')
+  end
+
+  it 'sets the doubler to complete' do
+    doubler = Doubler.new
+    cd = CashDoubler.new(doubler)
+
+    #CashDoubler doesn't care what doubler
+    #does when it gets .complete! called on it
+    #it just wants to make sure it calls it
+    expect(doubler).to receive(:complete!)
+    cd.double_cash('$4')
+  end
+end
+
+
+

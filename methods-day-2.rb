@@ -1,12 +1,16 @@
 def repeat(str, n)
   #takes a string and an integer and returns
-  # the string repeated n times, seperated by
+  # the string repeated n times, separated by
+  result = []
+  n.times { result << str }
+  result.join(' ')
 end
 
 def interleave(array1, array2)
   #like interpose, but the array should not be nested
   #For example: given arrays [1, 2, 3] and [:a, :b, :c]
   #return [1, :a, 2, :b, 3, :c]
+  interpose(array1, array2).flatten
 end
 
 def hide_in_shuffle(letter)
