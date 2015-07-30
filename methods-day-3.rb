@@ -2,6 +2,8 @@ def array_doubler(array)
   #should return an array with every element doubled
   #doubling implementation goes here
 
+  array = array.map{|i| i * 2}
+
   #you must leave this here in the final implementation
   #but you can comment it out to get your tests
   #to pass when working on the doubling part
@@ -10,6 +12,9 @@ end
 
 def squarer(array)
 
+  raise ArgumentError unless array.all?{|i| i.is_a?(Integer)}
+
+  array.map{|i| i * i}
   #for this one, you should test 3 things
   #
   #1. the actual return value
@@ -39,5 +44,5 @@ def returns_countable(n)
     n
   else
     n.split
-  else
+  end
 end
